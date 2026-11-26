@@ -1,0 +1,960 @@
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+        --ink: #242424;
+        --muted: #687078;
+        --line: #e1e4e8;
+        --bg: #f1f2f4;
+        --dark: #292929;
+        --blue: #355c85;
+        --light-blue: #dff1ff;
+    }
+
+    body {
+        color: var(--ink);
+        background:
+            radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.13), transparent 35%),
+            radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.10), transparent 35%),
+            var(--bg);
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    button, input, select, textarea {
+        font: inherit;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    /* =========================
+    LOGIN PAGE
+    ========================= */
+
+    .home-page {
+        min-height: 100vh;
+        width: 100%;
+        background-image: url("images/school-background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 50px 4%;
+        gap: 35px;
+    }
+
+    /* DARK BACKGROUND OVERLAY */
+    .home-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 0;
+    }
+
+    /* LEFT SIDE - SCHOOL INFORMATION */
+    .home-left {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        color: white;
+        min-width: 0;
+    }
+
+    .school-details {
+        max-width: 720px;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* SCHOOL LOGO - ANIMATED BLUE GLOW */
+.large-school-logo {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    margin-bottom: 15px;
+
+    filter:
+        drop-shadow(0 0 8px rgba(147, 197, 253, 0.95))
+        drop-shadow(0 0 18px rgba(59, 130, 246, 0.85))
+        drop-shadow(0 0 35px rgba(37, 99, 235, 0.75))
+        drop-shadow(0 0 55px rgba(37, 99, 235, 0.55));
+
+    animation: logoGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* LOGO GLOW ANIMATION */
+@keyframes logoGlow {
+    from {
+        filter:
+            drop-shadow(0 0 5px rgba(147, 197, 253, 0.7))
+            drop-shadow(0 0 15px rgba(59, 130, 246, 0.6))
+            drop-shadow(0 0 30px rgba(37, 99, 235, 0.4));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 12px rgba(191, 219, 254, 1))
+            drop-shadow(0 0 25px rgba(59, 130, 246, 0.95))
+            drop-shadow(0 0 45px rgba(37, 99, 235, 0.85))
+            drop-shadow(0 0 65px rgba(37, 99, 235, 0.65));
+    }
+}
+
+    /* SCHOOL NAME - ONE LINE */
+    .school-details h1 {
+        font-family: "Times New Roman", serif;
+        font-size: 32px;
+        line-height: 1.2;
+        white-space: nowrap;
+        margin-bottom: 1px;
+        color: white;
+    }
+
+    /* SCHOOL SLOGAN */
+    .school-details h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: normal;
+        margin-bottom: 150px;
+        color: #dceeff;
+    }
+
+    /* SCHOOL DESCRIPTION - 2 LINES */
+    .school-details p {
+        max-width: 620px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #f1f5f9;
+        margin: 0 auto;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* RIGHT SIDE - LOGIN CARD WITH ANIMATED BLUE GLOW */
+    .home-right {
+        flex: 0 0 410px;
+        width: 430px;
+        min-height: auto;
+        padding: 25px;
+        background: rgba(223, 241, 255, 0.97);
+
+        box-shadow:
+            0 0 8px rgba(147, 197, 253, 0.95),
+            0 0 20px rgba(59, 130, 246, 0.85),
+            0 0 42px rgba(37, 99, 235, 0.70),
+            0 0 70px rgba(37, 99, 235, 0.45),
+            0 10px 35px rgba(0, 0, 0, 0.30);
+
+        filter:
+            drop-shadow(0 0 12px rgba(59, 130, 246, 0.75))
+            drop-shadow(0 0 25px rgba(37, 99, 235, 0.45));
+
+        position: relative;
+        z-index: 1;
+        animation: loginCardGlow 2.5s ease-in-out infinite alternate;
+    }
+
+    /* LOGIN CARD GLOW ANIMATION */
+    @keyframes loginCardGlow {
+        from {
+            box-shadow:
+                0 0 8px rgba(147, 197, 253, 0.85),
+                0 0 20px rgba(59, 130, 246, 0.70),
+                0 0 42px rgba(37, 99, 235, 0.55),
+                0 0 60px rgba(35, 99, 235, 0.35),
+                0 10px 35px rgba(0, 0, 0, 0.30);
+
+            filter:
+                drop-shadow(0 0 10px rgba(59, 130, 246, 0.65))
+                drop-shadow(0 0 20px rgba(37, 99, 235, 0.35));
+        }
+
+        to {
+            box-shadow:
+                0 0 14px rgba(191, 219, 254, 1),
+                0 0 32px rgba(59, 130, 246, 0.95),
+                0 0 58px rgba(37, 99, 235, 0.80),
+                0 0 90px rgba(37, 99, 235, 0.60),
+                0 10px 35px rgba(0, 0, 0, 0.30);
+
+            filter:
+                drop-shadow(0 0 18px rgba(59, 130, 246, 0.90))
+                drop-shadow(0 0 35px rgba(37, 99, 235, 0.60));
+        }
+    }
+
+    /* LOGIN HEADER */
+    .login-heading {
+        display: block;
+        text-align: left;
+        margin-bottom: 35px;
+    }
+
+    /* REMOVE LOGIN LOGO */
+    .login-logo {
+        display: none !important;
+    }
+
+    /* SYSTEM TITLE - ONE LINE */
+    .login-heading h1 {
+        font-size: 13px;
+        line-height: 1.3;
+        white-space: nowrap;
+        text-align: center;
+        margin-bottom: 12px;
+        color: #243c56;
+    }
+
+    /* LOGIN INSTRUCTION */
+    .home-right > p.centered {
+        font-size: 15px;
+        line-height: 1.4;
+        white-space: nowrap;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #52677c;
+    }
+
+    /* LOGIN FORM */
+    #login-form {
+        width: 100%;
+        margin: 15px auto 0;
+    }
+
+    #login-form label {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    #login-form input {
+        width: 100%;
+        height: 46px;
+        padding: 12px;
+        border: 1px solid #cbd0d5;
+        border-radius: 8px;
+        background: white;
+        margin-bottom: 15px;
+        outline: none;
+    }
+
+    #login-form input:focus {
+        border-color: #536a80;
+        box-shadow: 0 0 0 3px rgba(83, 106, 128, 0.12);
+    }
+
+    /* GENERAL INPUTS */
+    label {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    input, select {
+        width: 100%;
+        min-height: 44px;
+        padding: 11px 12px;
+        border: 1px solid #cbd0d5;
+        border-radius: 7px;
+        background: white;
+        color: var(--ink);
+        margin-bottom: 16px;
+        outline: none;
+    }
+
+    input:focus, select:focus {
+        border-color: #536a80;
+        box-shadow: 0 0 0 3px rgba(83, 106, 128, 0.12);
+    }
+
+    /* BUTTONS */
+    .primary-button,
+    .secondary-button,
+    .back-button {
+        border: none;
+        border-radius: 8px;
+        padding: 12px 17px;
+        font-weight: bold;
+        transition: 0.2s ease;
+    }
+
+    .primary-button {
+        background: var(--dark);
+        color: white;
+    }
+
+    .primary-button:hover {
+        background: #454545;
+    }
+
+    .secondary-button {
+        background: #e7e9ec;
+        color: #292929;
+        border: 1px solid #d5d9dd;
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    /* LOGIN MESSAGES */
+    .form-message {
+        min-height: 22px;
+        color: #a32626;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    /* ADMIN ACCOUNT NOTE - CENTERED */
+    .note {
+        width: 100%;
+        margin: 18px auto 0;
+        padding: 8px 0;
+        border: none;
+        color: #535b63;
+        font-size: 15px;
+        line-height: 1.5;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .demo-note {
+        width: 100%;
+        max-width: none;
+        margin: 15px auto 0;
+        padding: 8px 0;
+        border: none;
+        color: #535b63;
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .muted {
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .small {
+        font-size: 13px;
+    }
+
+    /* =========================
+    DASHBOARD
+    ========================= */
+
+    .app {
+        min-height: 100vh;
+    }
+
+    .topbar {
+        min-height: 76px;
+        padding: 15px 4%;
+        background: var(--dark);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .topbar strong {
+        display: block;
+        font-size: 18px;
+    }
+
+    .topbar span {
+        display: block;
+        color: #c8cbd0;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .page-shell {
+        max-width: 1400px;
+        margin: auto;
+        padding: 34px 4% 55px;
+        position: relative;
+        isolation: isolate;
+    }
+
+    /* DASHBOARD BACKGROUND GLOW */
+    .page-shell::before {
+        content: "";
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        top: 15%;
+        right: -100px;
+        background: rgba(59, 130, 246, 0.12);
+        filter: blur(100px);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .page-heading {
+        margin-bottom: 25px;
+    }
+
+    .page-heading h1,
+    .content-page > h1 {
+        font-size: 30px;
+        margin: 5px 0 8px;
+    }
+
+    .eyebrow {
+        color: #68727c;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+    }
+
+    /* GLOWING TEXT */
+    .glow-text {
+        color: #ffffff;
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.3),
+            0 0 15px rgba(59, 130, 246, 0.5),
+            0 0 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .glow-blue {
+        color: #60a5fa;
+        text-shadow:
+            0 0 5px rgba(96, 165, 250, 0.6),
+            0 0 15px rgba(59, 130, 246, 0.5),
+            0 0 30px rgba(59, 130, 246, 0.4);
+    }
+
+    /* STATISTICS */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin: 24px 0 28px;
+    }
+
+    .stat-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 20px;
+    }
+
+    .stat-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card strong {
+        font-size: 30px;
+    }
+
+    /* CLICKABLE DASHBOARD CARDS */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .menu-card {
+        text-align: left;
+        border: 1px solid var(--line);
+        background: white;
+        border-radius: 11px;
+        padding: 23px;
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: 0.2s;
+        color: var(--ink);
+    }
+
+    .menu-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+    }
+
+    .menu-icon {
+        font-size: 30px;
+        margin-bottom: 14px;
+    }
+
+    .menu-card b {
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .menu-card small {
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 13px;
+    }
+
+    .menu-card em {
+        margin-top: auto;
+        padding-top: 17px;
+        color: #46596b;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    /* =========================
+    SUBPAGES
+    ========================= */
+
+    .back-button {
+        background: #3a3a3a;
+        color: white;
+        margin-bottom: 22px;
+    }
+
+    .back-button:hover {
+        background: #555;
+    }
+
+    .content-page {
+        margin-top: 8px;
+    }
+
+    .panel {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 23px;
+        margin: 18px 0;
+        transition: 0.3s ease;
+    }
+
+    .panel:hover {
+        box-shadow: 0 0 18px rgba(59, 130, 246, 0.08);
+    }
+
+    .panel h2 {
+        font-size: 19px;
+        margin-bottom: 16px;
+    }
+
+    .panel-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 14px;
+    }
+
+    .search-input {
+        max-width: 270px;
+        margin: 0;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 18px;
+    }
+
+    .form-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .notice {
+        color: #6b5a2b;
+        background: #fff8e5;
+        border: 1px solid #f0e2b6;
+        border-radius: 7px;
+        padding: 11px 13px;
+        font-size: 12px;
+        line-height: 1.5;
+        margin-top: 16px;
+    }
+
+    /* STUDENT ABSENCE MESSAGE FORM */
+    #absence-message-form label {
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    #absence-reason {
+        display: block;
+        width: 100%;
+        min-height: 150px;
+        padding: 12px;
+        border: 1px solid #cbd0d5;
+        border-radius: 7px;
+        background: white;
+        color: var(--ink);
+        font-size: 14px;
+        resize: vertical;
+        outline: none;
+        margin-top: 8px;
+        margin-bottom: 16px;
+    }
+
+    #absence-reason:focus {
+        border-color: #536a80;
+        box-shadow: 0 0 0 3px rgba(83, 106, 128, 0.12);
+    }
+
+    #absence-date {
+        width: 100%;
+    }
+
+    .message-item {
+        padding: 15px;
+        margin-top: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f9fafb;
+        line-height: 1.7;
+    }
+
+    /* TABLES */
+    .table-wrap {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 650px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 13px 12px;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+    }
+
+    th {
+        background: #f2f3f5;
+        color: #424950;
+    }
+
+    .table-action {
+        padding: 6px 9px;
+        margin: 2px;
+        border: 1px solid #d4d8dc;
+        background: #f7f7f7;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .table-action:hover {
+        background: #e9ecef;
+    }
+
+    /* DEVICE REGISTRATION */
+    .two-column {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .device-summary {
+        background: #f5f6f7;
+        border-radius: 8px;
+        padding: 14px;
+        margin-top: 6px;
+        color: #626a72;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .fingerprint-placeholder {
+        min-height: 150px;
+        background: #f5f6f7;
+        border: 1px dashed #c6cbd0;
+        border-radius: 9px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        margin: 10px 0 18px;
+    }
+
+    .fingerprint-placeholder span {
+        font-size: 42px;
+        color: #697887;
+    }
+
+    .fingerprint-placeholder small {
+        color: var(--muted);
+    }
+
+    #fingerprint-clear {
+        margin-top: 9px;
+    }
+
+    .empty-state {
+        color: var(--muted);
+        background: #f6f7f8;
+        border-radius: 7px;
+        padding: 18px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .profile-line {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+    }
+
+    /* TOAST */
+    .toast {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        background: #252525;
+        color: white;
+        border-radius: 8px;
+        padding: 14px 18px;
+        z-index: 10;
+    }
+
+    /* =========================
+    LOADING SCREEN
+    ========================= */
+
+    .loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background:
+            radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15), transparent 50%),
+            #101827;
+    }
+
+    .loading-content {
+        text-align: center;
+        color: white;
+    }
+
+    .loading-content h2 {
+        margin-top: 20px;
+        font-size: 28px;
+    }
+
+    .loading-content p {
+        margin-top: 12px;
+        color: #a8b8cc;
+        font-size: 14px;
+    }
+
+    .loading-spinner {
+        width: 55px;
+        height: 55px;
+        border: 4px solid rgba(255, 255, 255, 0.15);
+        border-top: 4px solid #60a5fa;
+        border-radius: 50%;
+        margin: auto;
+        animation: spin 1s linear infinite;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading-screen.hidden {
+        display: none !important;
+    }
+
+    /* =========================
+    RESPONSIVE DESIGN
+    ========================= */
+
+    @media (max-width: 950px) {
+        .home-page {
+            flex-direction: column;
+            justify-content: center;
+            gap: 25px;
+            padding: 35px 20px;
+        }
+
+        .home-left {
+            width: 100%;
+            flex: none;
+        }
+
+        .school-details {
+            padding: 10px;
+        }
+
+        .large-school-logo {
+            width: 190px;
+            height: 190px;
+        }
+
+        .school-details h1 {
+            font-size: clamp(12px, 3.2vw, 25px);
+            white-space: nowrap;
+        }
+
+        .school-details h2 {
+            font-size: 18px;
+        }
+
+        .school-details p {
+            font-size: 14px;
+        }
+
+        .home-right {
+            flex: none;
+            width: 100%;
+            max-width: 410px;
+        }
+
+        .login-heading h1 {
+            font-size: clamp(9px, 1.8vw, 13px);
+        }
+
+        .home-right > p.centered {
+            font-size: clamp(9px, 1.7vw, 12px);
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .menu-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 650px) {
+        .home-page {
+            padding: 25px 15px;
+            gap: 15px;
+        }
+
+        .school-details {
+            padding: 5px;
+        }
+
+        .large-school-logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 12px;
+        }
+
+        .school-details h1 {
+            font-size: clamp(11px, 3.2vw, 21px);
+            white-space: nowrap;
+        }
+
+        .school-details h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .school-details p {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .home-right {
+            padding: 25px 15px;
+            max-width: 410px;
+        }
+
+        .login-heading h1 {
+            font-size: clamp(8px, 2.5vw, 12px);
+            white-space: nowrap;
+        }
+
+        .home-right > p.centered {
+            font-size: clamp(8px, 2.4vw, 11px);
+            white-space: nowrap;
+        }
+
+        .home-right .note {
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .topbar {
+            padding: 15px 20px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .stats-grid,
+        .menu-grid,
+        .two-column,
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+            grid-column: 1;
+        }
+
+        .panel {
+            padding: 17px;
+        }
+
+        .panel-heading {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .search-input {
+            max-width: none;
+        }
+
+        .page-heading h1,
+        .content-page > h1 {
+            font-size: 25px;
+        }
+
+        .stat-card strong {
+            font-size: 26px;
+        }
+    }
